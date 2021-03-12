@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+</head>
+<body>
+<p>Title</p>
+<div id="app">
+  <span v-if="isUser">
+    <label for="username">user account</label>
+    <input type="text" id="username" placeholder="account">
+  </span>
+  <span v-else>
+    <label for="mail">user mail</label>
+    <input type="text" id="mail" placeholder="mail">
+  </span>
+  <button @click="isUser = !isUser">switch type</button>
+</div>
+</body>
+<!--導入js-->
+<script src="https://cdn.jsdelivr.net/npm/vue@2.5.21/dist/vue.min.js"></script>
+<script>
+    const app = new Vue({
+        el: '#app', 
+        data: {
+            isUser: true
+        }
+    })
+    
+</script>
+</html>

@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Title</title>
+</head>
+<body>
+
+
+<script>
+  // setTimeout(() => {
+  //   console.log('Hello');
+  // }, 1000);
+
+  // params --> function(resolve, reject)
+  // resolve, reject its self also an function
+  // 對異步操作進行封裝
+  new Promise((resolve, reject) => {
+    
+    // 1. query
+     setTimeout(() => {
+        resolve();
+      }, 1000)
+  }).then(() => {
+    // 1. handle return result from query
+    console.log('Hello');
+    console.log('Hello');
+    console.log('Hello');
+    console.log('Hello');
+    console.log('Hello');
+    
+    return new Promise((resolve, reject) => {
+      
+      // 2. query
+      setTimeout(() => {
+        resolve();
+      }, 1000)
+    })
+  }).then(() => {
+
+    // 2. handle return result from query
+    console.log('vue.js');
+    console.log('vue.js');
+    console.log('vue.js');
+    console.log('vue.js');
+    console.log('vue.js');
+    
+    return new Promise((resolve, reject) => {
+      
+      // 3. query
+      setTimeout(() => {
+        resolve();
+      }, 1000)
+      
+    })
+  }).then(() => {
+
+    // 3.handle return result from query
+    console.log('Hello vue.js');
+    console.log('Hello vue.js');
+    console.log('Hello vue.js');
+    console.log('Hello vue.js');
+    console.log('Hello vue.js');
+  })
+
+
+  new Promise((resolve, reject) => {
+    setTimeout(() => {
+      // success
+      // resolve('pass parameter(= query result) to then() to handle the return value');
+
+      // fail
+      reject('Error message')
+    }, 1000)
+  }).then((data) => {
+    console.log(data);
+    console.log(data);
+    console.log(data);
+  }).catch((err) => {
+    console.log(err);
+  })
+
+</script>
+
+</body>
+</html>

@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<div id="app">
+  <input type="text" v-model="message">
+  <h2>{{message}}</h2>
+  <br>
+
+  <!-- 1. lazy 
+    .lazy would delay the view change untill 
+    the input is unfocus or after pressing ENTER-->
+  <input type="text" v-model.lazy="message">
+  <h2>{{message}}</h2>
+
+  <!-- 2. number 
+    without .number, when input any number, 
+    it would automatically convert to string type-->
+  <input type="number" v-model.number="age">
+  <h2> typeof age : {{typeof age}}</h2>
+  <h2> content: {{age}}</h2>
+
+  <!-- 3. trim-->
+  <input type="text" v-model.trim="name">
+  <h2> your name : {{name}}</h2>
+  <br>
+
+</div>
+<!--導入js-->
+<script src="https://cdn.jsdelivr.net/npm/vue@2.5.21/dist/vue.min.js"></script>
+<script>
+  const app = new Vue({
+      el: '#app', 
+      data: {
+        message: 'hello',
+        age: 0,
+        name: ''
+      }
+  })
+    
+</script>
+</html>

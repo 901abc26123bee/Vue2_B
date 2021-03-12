@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<div id="app">
+  <!-- 1. -->
+  <input type="text" v-model="message">
+  {{message}}
+  <br>
+  <h2>{{message}}</h2>
+
+  <!-- 2. 
+  v-bind: bind a html value attribute
+      value: <button>, <option>, <input>, <li>, <meter>, <progress>, <param> 定義將顯示在加載頁面上元素的預設值。
+
+  v-on: bind an input event on current element
+  -->
+  <input type="text" v-bind:value="message" v-on:input="valueChange">
+  {{message}}
+  <br>
+  <!-- 2. syntax sugar 
+HTML 中的元素具有屬性 ; 而這些屬性可以藉由各種方式去設定元素或調整它們的行為，以符合使用者的期待。
+https://developer.mozilla.org/zh-TW/docs/Web/HTML/Attributes
+  -->
+  <input type="text" :value="message" @input="valueChange">
+  {{message}}
+  <br>
+</div>
+<!--導入js-->
+<script src="https://cdn.jsdelivr.net/npm/vue@2.5.21/dist/vue.min.js"></script>
+<script>
+  const app = new Vue({
+      el: '#app', 
+      data: {
+        message: 'hello'
+      },
+      methods: {
+        valueChange(event){
+          this.message = event.target.value;
+        }
+      }
+  })
+    
+</script>
+</html>

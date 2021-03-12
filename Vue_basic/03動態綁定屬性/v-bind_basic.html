@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<div id="app">
+    <!-- if you want to dynamic attribute, you cannot use mustache synyax
+        since it won't replace the variable name(imgURL) with real data(url)
+    <img src="{{imgURL}}" alt="dog">
+    -->
+    <img v-bind:src="imgURL" alt="dog">
+    <a v-bind:href="aHref">google</a>
+    <!--sugar syntax-->
+    <img :src="imgURL" alt="dog">
+    <a :href="aHref">google</a>
+</div>
+
+</body>
+<!--導入js-->
+<script src="https://cdn.jsdelivr.net/npm/vue@2.5.21/dist/vue.min.js"></script>
+<script>
+    const app = new Vue({
+        el: '#app',
+        data: {
+            message: 'hello',
+            imgURL: 'https://previews.123rf.com/images/dstarky/dstarky1701/dstarky170101131/69423991-dog-icon-or-logo-in-modern-line-style-high-quality-black-outline-pictogram-for-web-site-design-and-m.jpg',
+            aHref: 'https://www.google.com'
+        }
+    })
+</script>
+</html>

@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<div id="app">
+  <!-- 1. iterate without index -->
+  <ul>
+    <li v-for="item in names">{{item}}</li>
+  </ul>
+
+  <!-- 2. iterate with index -->
+  <ul>
+    <li v-for="(item, index) in names">
+      {{index+1}}.{{item}}
+    </li>
+  </ul>
+<!--導入js-->
+<script src="https://cdn.jsdelivr.net/npm/vue@2.5.21/dist/vue.min.js"></script>
+<script>
+  const app = new Vue({
+      el: '#app', 
+      data: {
+        names: ['Alex', 'Bete', 'Candy', 'Dan']
+      }
+  })
+    
+</script>
+</html>

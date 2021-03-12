@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+<div id="app">
+  <!--  -->
+  <div v-if="books.length">
+    <table>
+      <thead>
+        <tr>
+          <th></th>
+          <th>BookName</th>
+          <th>PublishDate</th>
+          <th>Price</th>
+          <th>Number</th>
+          <th>Operation</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr v-for="(item, index) in books">
+          <td>{{item.id}}</td>
+          <td>{{item.name}}</td>
+          <td>{{item.date}}</td>
+          <!-- 1. methods
+          <td>{{getFinalPrices(item.price)}}</td>
+          -->
+          <!-- 2. filter -->
+          <td>{{item.price|showPrices}}</td>
+          <td>
+            <button @click="decrement(index)" v-bind:disabled="item.count<=1">-</button>
+            {{item.count}}
+            <button @click="increment(index)">+</button>
+          </td>
+          <td>
+            <button @click="removeHandler(index)">remove</button>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+    <h2>Final Prices: {{totalPrices|showPrices}} </h2>
+  </div>
+  
+  <h2 v-else>shopping cart is empty</h2>
+
+</div>
+<!--導入js-->
+<script src="https://cdn.jsdelivr.net/npm/vue@2.5.21/dist/vue.min.js"></script>
+<script src="main.js"></script>
+</html>

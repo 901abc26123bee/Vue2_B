@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<div id="app">
+  <!-- 1. -->
+  <ul>
+    <li>{{info.name}}</li>
+    <li>{{info.age}}</li>
+    <li>{{info.height}}</li>
+  </ul>
+
+  <!-- 2. when iterate and only take one value ==> value-->
+  <ul>
+    <li v-for="item in info">
+      {{item}}
+    </li>
+  </ul>
+
+  <!-- 3. (value, key, index) -->
+  <ul>
+    <li v-for="(value, key, index) in info">
+      {{index}} - {{key}} : {{value}}
+    </li>
+  </ul>
+<!--導入js-->
+<script src="https://cdn.jsdelivr.net/npm/vue@2.5.21/dist/vue.min.js"></script>
+<script>
+  const app = new Vue({
+      el: '#app', 
+      data: {
+        info: {
+          name: 'Dan',
+          age: 20,
+          height: 180
+        }
+      }
+  })
+    
+</script>
+</html>

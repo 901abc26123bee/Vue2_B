@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<p>Title</p>
+<!--view層 模板-->
+<div id="app">
+    <h2> Current Count : {{counter}}</h2>
+<!--    <button v-on:click="counter++">+</button>-->
+<!--    <button v-on:click="counter--">-</button>-->
+
+ 
+       <button v-on:click="add">+</button>
+       <!--   syntax sugar-->
+       <button @click="sub">-</button>
+</div>
+</body>
+<!--導入js-->
+<script src="https://cdn.jsdelivr.net/npm/vue@2.5.21/dist/vue.min.js"></script>
+<script>
+        // proxy
+        // 聲明式編程（以前：命令式編程）
+        const obj = {
+            counter: 0
+        }
+    const app = new Vue({
+        el: '#app', // 決定 Vue 對象掛載到哪一個元素上 <div id="app">
+        data: obj, // save some date, 可以是自己直接定義的（如此案例），也可能是來自網路
+        methods: {
+            add: function(){
+                this.counter++;
+            },
+            sub: function(){
+                this.counter--;
+            }
+        }
+    })
+    
+</script>
+</html>

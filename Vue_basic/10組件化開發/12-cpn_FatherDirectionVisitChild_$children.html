@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+
+<body>
+<!-- father component -->
+<div id="app">
+  <cpn></cpn>
+  <cpn></cpn>
+
+  <cpn ref="test"></cpn>
+  <button @click="btnClick">button</button>
+</div>
+
+<!-- child component -->
+<template id="cpn">
+  <div>
+    <h2>child component</h2>
+  </div>
+</template>
+<!--導入js-->
+<script src="https://cdn.jsdelivr.net/npm/vue@2.5.21/dist/vue.min.js"></script>
+<script>
+  // father component
+  const app = new Vue({
+    el: '#app', 
+    data: {
+
+    },
+    methods: {
+      btnClick(){
+        // 1. $children : use less since use index to get,
+        // often use for get all child component 
+
+        // console.log(this.$children);
+        // this.$children[0].showMessage();
+        // this.$children[0].name;
+        //for(let c of this.$children){
+        //  console.log(c.name);
+        //  c.showMessage();
+        //}
+
+        // 2. $refs ==> return type === object
+        // default is a empty object, need to add ref="something",
+        // then get certain child cpn by $refs.something
+        console.log(this.$refs.test.name);
+      }
+    },
+    // child component
+    components: {
+      cpn: {
+        template: '#cpn',
+        data(){
+          return{
+            name: 'i am name of child cpn'
+          }
+        },
+        methods: {
+          showMessage(){
+            console.log('showMessage');
+          }
+        }
+      }
+    }
+  })
+    // npm install
+    // npm run serve
+</script>
+</html>

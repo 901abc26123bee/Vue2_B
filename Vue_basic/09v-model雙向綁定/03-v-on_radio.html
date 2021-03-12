@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<div id="app">
+  <!-- 1. same 'name' attribute would 互斥，選項只能擇一  
+          smae 'v-model' can do the same
+  -->
+  <label for="male">
+    <input type="radio" id="male" name="sex" value="male" v-model="sex"> male
+  </label>
+
+  <label for="female">
+    <input type="radio" id="female" name="sex" value="female" v-model="sex"> female
+  </label> 
+
+  <br>
+  <h2>you choose : {{sex}}</h2>
+</div>
+<!--導入js-->
+<script src="https://cdn.jsdelivr.net/npm/vue@2.5.21/dist/vue.min.js"></script>
+<script>
+  const app = new Vue({
+      el: '#app', 
+      data: {
+        message: 'hello',
+        sex: 'male'
+      }
+  })
+    
+</script>
+</html>

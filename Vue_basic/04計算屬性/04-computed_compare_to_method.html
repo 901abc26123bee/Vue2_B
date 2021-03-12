@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<div id="app">
+    <!--  1.直接拼接:太過繁瑣 -->
+    <h2>{{firstNmae+' '+lastName}}</h2>
+    <h2>{{firstNmae}} {{lastName}}</h2>
+
+    <!--  2.通過定義 method , invoke every time -->
+    <h2>{{getFullName()}}</h2>
+    <h2>{{getFullName()}}</h2>
+    <h2>{{getFullName()}}</h2>
+    <h2>{{getFullName()}}</h2>
+
+    <!--  3.通過 computed , computed have chache, if the attribute did'nt change,
+        it would only invoke once
+     -->
+    <h2>{{fullName}}</h2>
+    <h2>{{fullName}}</h2>
+    <h2>{{fullName}}</h2>
+    <h2>{{fullName}}</h2>
+    <h2>{{fullName}}</h2>
+
+</div>
+
+</body>
+<!--導入js-->
+<script src="https://cdn.jsdelivr.net/npm/vue@2.5.21/dist/vue.min.js"></script>
+<script>
+    const app = new Vue({
+        el: '#app',
+        data: {
+            message: 'hello',
+            firstNmae: 'Alca',
+            lastName: 'Leon'
+        },
+        computed: {
+            fullName: function(){
+                console.log('通過 computed');
+                return this.firstNmae + ' ' + this.lastName
+            }
+        },
+        methods: {
+            getFullName: function(){
+                //console.log('通過定義 method');
+                return this.firstNmae + ' ' + this.lastName
+            },
+            getFullName(){
+                console.log('通過定義 method');
+                return this.firstNmae + ' ' + this.lastName
+            }
+        }
+    })
+</script>
+</html>

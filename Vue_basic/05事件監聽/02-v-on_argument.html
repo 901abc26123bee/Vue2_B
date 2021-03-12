@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<p>Title</p>
+<div id="app">
+    <h2>btnClick</h2>
+    <!-- 1.method don't have argument -->
+       <button @click="btnClick()">button1</button>
+       <button @click="btnClick">button2</button>
+    <h2>btnClick2</h2>
+    <!-- 2.method need an argument 
+    when invoke without (), 
+    vue would defaultly pass the 'event' ,
+    which produce by browser, as argument to method
+
+    when invoke with (), ==> undefined
+    -->
+       <button @click="btnClick2(123)">button3</button>
+       <button @click="btnClick2()">button4</button>
+       <button @click="btnClick2">button5</button>
+    <h2>btnClick3</h2>
+    <!-- 3.method need 'event' argument and other argument at the same time -->
+       <button @click="btnClick3">button5</button>
+       <button @click="btnClick3()">button5</button>
+       <button @click="btnClick3('abc')">button5</button>
+       <button @click="btnClick3('abc', event)">button5</button>
+        <!-- how to obtain event object in browser ===> $event
+        vue would automically interprite it -->
+       <button @click="btnClick3('abc', $event)">button5</button>
+<!--
+                         btnClick
+02-v-on_argument.html:61 btnClick
+
+02-v-on_argument.html:64 ----123
+02-v-on_argument.html:64 ----undefined
+02-v-on_argument.html:64 ----[object MouseEvent]
+
+02-v-on_argument.html:67 ++++[object MouseEvent]undefined
+02-v-on_argument.html:67 ++++undefinedundefined
+02-v-on_argument.html:67 ++++abcundefined
+02-v-on_argument.html:67 ++++abcI am variable need to be defined in Vue(string not srrounded in ""/'' view as variable), otherwise there would be error appear
+02-v-on_argument.html:67 ++++abc[object MouseEvent]
+-->
+</div>
+</body>
+<!--導入js-->
+<script src="https://cdn.jsdelivr.net/npm/vue@2.5.21/dist/vue.min.js"></script>
+<script>
+    const app = new Vue({
+        el: '#app', 
+        data: {
+            message: 'hello',
+            event: 'I am variable need to be defined in Vue(string not srrounded in \"\"\/\'\' view as variable), otherwise there would be error appear'
+        }, 
+        methods: {
+            btnClick() {
+                console.log('btnClick');
+            },
+            btnClick2(event) {
+                console.log('----' + event);
+            },
+            btnClick3(a, event) {
+                console.log('++++' + a + event);
+            }
+        }
+    })
+    
+</script>
+</html>

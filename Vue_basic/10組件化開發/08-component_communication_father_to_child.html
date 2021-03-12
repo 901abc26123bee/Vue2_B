@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<div id="app">
+  <cpn v-bind:cmovies="movies" :cmessage="message"></cpn>
+  <h2>---------- below is error version without v-bind-----------</h2>
+  <cpn cmovies="movies" cmessage="message"></cpn>
+  <h2>---------- defalt value -----------</h2>
+  <cpn></cpn>
+</div>
+
+<template id="cpn">
+  <div>
+    <h2>{{cmessage}}</h2>
+    <ul>
+      <li v-for="item in cmovies">{{item}}</li>
+    </ul>
+  </div>
+</template>
+
+<!--導入js-->
+<script src="https://cdn.jsdelivr.net/npm/vue@2.5.21/dist/vue.min.js"></script>
+<script>
+  // father pass to child ==> props
+
+  // child component
+  const cpn = {
+    template:'#cpn',
+    //props: ['cmovies', 'cmessage'],
+    props: {
+      // 1. type constrant
+      //cmovies: Array,
+      //cmessage: String
+
+      // 2. default value, and must pass value when using this component
+      cmessage:{
+        type: [String, Number],
+        default: 'aloha',
+        required: true
+      },
+      cmovies:{
+        type: Array,
+        // if the data type is object or array,
+        // default value must be a function
+        defalt() {
+          return [];
+        }
+      }
+    },
+    data() {
+      return{}
+    },
+    methods: {
+
+    }
+  }
+
+  // root component == father
+  const app = new Vue({
+      el: '#app', 
+      data: {
+        message: 'hello',
+        movies: ['1990', '7 cell present', 'secret girl']
+      },
+      components: {
+        cpn 
+      }
+  })
+    
+</script>
+</html>

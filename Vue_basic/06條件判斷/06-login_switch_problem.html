@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+</head>
+<body>
+<p>Title</p>
+<div id="app">
+  <span v-if="isUser">
+    <label for="username">user account</label>
+    <input type="text" id="username" placeholder="account">
+  </span>
+  <span v-else>
+    <label for="mail">user mail</label>
+    <input type="text" id="mail" placeholder="mail">
+  </span>
+  <br>
+  <!-- add key 作為標示符，避免當修改成相似元素時，vue內部虛擬DOM,部分元件覆用
+      例如：用戶輸入輸入框中的內容
+      need to ensure key in input are different
+  -->
+  <span v-if="isUser">
+    <label for="username">user account</label>
+    <input type="text" id="username" placeholder="account" key="username">
+  </span>
+  <span v-else>
+    <label for="mail">user mail</label>
+    <input type="text" id="mail" placeholder="mail" key="email">
+  </span>
+  <button @click="isUser = !isUser">switch type</button>
+</div>
+</body>
+<!--導入js-->
+<script src="https://cdn.jsdelivr.net/npm/vue@2.5.21/dist/vue.min.js"></script>
+<script>
+    const app = new Vue({
+        el: '#app', 
+        data: {
+            isUser: true
+        }
+    })
+    
+</script>
+</html>

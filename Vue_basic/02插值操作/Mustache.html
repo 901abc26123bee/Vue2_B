@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<p>Title</p>
+<!--view層 模板-->
+<div id="app">
+    <h2>{{message}}</h2>
+     <!--mustache 語法中，不僅僅可以寫變量，也可以寫表達式-->
+    <h2>{{message}}, hello</h2>
+    <h2>{{firstName + ' ' + lastName}}</h2>
+		<h2>{{firstName}} {{lastName}}</h2>
+		<h2>{{counter*2}}</h2>
+</div>
+</body>
+<!--導入js-->
+<script src="https://cdn.jsdelivr.net/npm/vue@2.5.21/dist/vue.min.js"></script>
+<script>
+    const app = new Vue({
+        el: '#app',
+        data:{
+            message: 'Leon',
+            firstName: 'atom',
+            lastName: 'briant',
+            counter: 100
+        }
+    })
+    
+</script>
+</html>

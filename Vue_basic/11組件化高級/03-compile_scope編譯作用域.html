@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+
+<body>
+<!-- father(root) component -->
+<div id="app">
+  <!-- 父組件模板的所有東西會在父級作用域內編譯，
+        子組件模板的所有東西會在子級作用域內編譯，-->
+  <!-- isShow==true ==> value is used in root component ==> first find isShow from root component
+  when use a variable, it would first see 
+  where did the variable use, and find the value from 
+  corresponding place -->
+  <cpn v-show="isShow"></cpn>
+  <!-- isShow==true ==> find in root component(app)-->
+  <button v-show="isShow">button of app(vue實例)</button>
+</div>
+
+<!-- child component -->
+<template id="cpn">
+  <div>
+    <h2>I am component</h2>
+    <!-- isShow==false ==> find in child component(cpn)-->
+    <button v-show="isShow">button of cpn(vue component)</button>
+  </div>
+</template>
+
+
+<!--導入js-->
+<script src="https://cdn.jsdelivr.net/npm/vue@2.5.21/dist/vue.min.js"></script>
+<script>
+  // father component
+  const app = new Vue({
+    el: '#app', 
+    data: {
+      message: 'I am root message',
+      isShow: true
+    },
+    // child component
+    components: {
+      cpn: {
+        template: '#cpn',
+        data(){
+          return {
+            isShow: false
+          }
+        }
+      }
+    }
+  })
+
+</script>
+</html>

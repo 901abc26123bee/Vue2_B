@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<p>Title</p>
+<!--view層 模板-->
+<div id="app">
+    <h2>{{message}}, Leon</h2>
+    <h2 v-text=message>, Leon</h2>
+</div>
+</body>
+<!--導入js-->
+<script src="https://cdn.jsdelivr.net/npm/vue@2.5.21/dist/vue.min.js"></script>
+<script>
+    const app = new Vue({
+        el: '#app',
+        data:{
+            message: 'hello',
+        }
+    })
+    
+</script>
+</html>

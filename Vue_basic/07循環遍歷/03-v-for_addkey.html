@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<div id="app">
+
+  <!-- 
+  :key 主要作用是為了高效更新虛擬DOM
+
+  besure that the :key are corresponding to the dom content(corresponding relation won't change by dom modification) 
+  you want to display, otherwise error
+
+  if :key="index, when insert/delete an item, (index:item) corresponding relation change due to insertion, which means vue cannot determine the dom location after insertion by :key -->
+  <ul>
+    <li v-for="item in letters" :key="item">
+      {{item}}
+    </li>
+  </ul>
+
+  <!-- wrong 
+  <ul>
+    <li v-for="item in letters" :key="index">
+      {{item}}
+    </li>
+  </ul>
+  -->
+<!--導入js-->
+<script src="https://cdn.jsdelivr.net/npm/vue@2.5.21/dist/vue.min.js"></script>
+<script>
+  const app = new Vue({
+      el: '#app', 
+      data: {
+        letters: ['w', 'x', 'y', 'z']
+      }
+  })
+    
+</script>
+</html>

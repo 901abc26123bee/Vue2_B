@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<div id="app">
+  <cpn></cpn>
+  <cpn></cpn>
+  <h2>-----------------------------</h2>
+  <cpn2></cpn2>
+  <cpn2></cpn2>
+</div>
+
+<template id='cpn'>
+  <div>
+    <h2> counter : {{counter}}</h2>
+    <button @click="increment">+</button>
+    <button @click="decrement">-</button>
+  </div>
+</template>
+
+<template id='cpn2'>
+  <div>
+    <h2> counter : {{countersame}}</h2>
+    <button @click="increment">+</button>
+    <button @click="decrement">-</button>
+  </div>
+</template>
+
+<!--導入js-->
+<script src="https://cdn.jsdelivr.net/npm/vue@2.5.21/dist/vue.min.js"></script>
+<script>
+  // 1. data return function ==> each component has its own data
+  Vue.component('cpn',{
+    template: '#cpn',
+    data(){
+      return{
+        counter: 0
+      }
+    },
+    methods:{
+      increment(){
+        this.counter++;
+      },
+      decrement(){
+        this.counter--;
+      }
+    }
+  })
+  // 2.data return object ==> all components share one data
+  const obj = {
+    countersame: 0
+  }
+  Vue.component('cpn2',{
+    template: '#cpn2',
+    data(){
+      return obj;
+    },
+    methods:{
+      increment(){
+        this.countersame++;
+      },
+      decrement(){
+        this.countersame--;
+      }
+    }
+  })
+
+
+  const app = new Vue({
+      el: '#app', 
+      data: {
+        message: 'hello',
+      }
+  })
+    
+</script>
+</html>

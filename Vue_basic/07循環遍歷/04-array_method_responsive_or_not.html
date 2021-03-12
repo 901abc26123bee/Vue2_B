@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<div id="app">
+
+  <!-- 
+ -->
+  <ul>
+    <li v-for="item in letters" :key="item">
+      {{item}}
+    </li>
+  </ul>
+
+  <button @click="btnClick">button</button>
+<!--導入js-->
+<script src="https://cdn.jsdelivr.net/npm/vue@2.5.21/dist/vue.min.js"></script>
+<script>
+  const app = new Vue({
+      el: '#app', 
+      data: {
+        letters: ['w', 'x', 'y', 'z']
+      },
+      methods: {
+        btnClick(){
+          // ------------ responsive ------------
+          //: push(), pop(), shift(), unshift(), splice(), sort(, reverse()
+          
+          // this.letters.push('push'); // add to last
+          // this.letters.pop(); // remove last
+          // this.letters.shift(); // remove first
+          // this.letters.unshift('unshift'); // add to first
+          // this.letters.splice(2,this.letters.length); // splice --> remove
+          // this.letters.splice(2,0,'splice insert'); // splice --> insert
+          // this.letters.splice(2, 2, 'splice replace', 'splice replace');
+          // this.letters.sort();
+          // this.letters.reverse();
+
+
+          Vue.set(this.letters, 2, 'vue.set modified');
+
+
+          // ------------- none responsive --------------
+          // modified by index  
+          // > app.letters
+          // < (4) ["modified by index", "x", "y", "z", __ob__: _e]
+          // this.letters[0]='modified by index';
+        }
+      }
+  })
+    
+</script>
+</html>

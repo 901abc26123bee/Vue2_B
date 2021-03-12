@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<p>Title</p>
+<!--view層 模板-->
+<div id="app">
+    <h2>{{message}}, Leon</h2>
+    <!-- 不需要表達式 
+        用法： 跳過這個元素和它的子元素的編譯過程。
+        可以用來顯示原始 Mustache 標籤。
+        跳過大量沒有指令的節點會加快編譯。 -->
+    <h2 v-pre>{{message}}, Leon</h2>
+</div>
+</body>
+<!--導入js-->
+<script src="https://cdn.jsdelivr.net/npm/vue@2.5.21/dist/vue.min.js"></script>
+<script>
+    const app = new Vue({
+        el: '#app',
+        data:{
+            message: 'hello',
+        }
+    })
+    
+</script>
+</html>

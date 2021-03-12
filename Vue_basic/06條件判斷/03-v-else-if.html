@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<p>Title</p>
+<div id="app">
+  <h2 v-if="score>=90">great</h2>
+  <h2 v-else-if="score>=80">good</h2>
+  <h2 v-else-if="score>=60">pass</h2>
+  <h2 v-else>fail</h2>
+  <br>
+  <h1>{{result}}</h1>
+</div>
+</body>
+<!--導入js-->
+<script src="https://cdn.jsdelivr.net/npm/vue@2.5.21/dist/vue.min.js"></script>
+<script>
+    const app = new Vue({
+        el: '#app', 
+        data: {
+            message: 'hello',
+            score: 70
+        },
+        // better than using v-else-if
+        computed: {
+            result(){
+                let showMessage='';
+                if(this.score>=90){
+                    showMessage='great';
+                }else if(this.score>=80){
+                    showMessage='good';
+                }else if(this.score>=60){
+                    showMessage='pass';
+                }else{
+                    showMessage='fail';
+                }
+                return showMessage;
+            }
+        }
+    })
+    
+</script>
+</html>

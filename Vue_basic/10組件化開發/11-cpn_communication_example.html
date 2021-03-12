@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+
+<body>
+<!-- father component -->
+<div id="app">
+  <!-- 
+  <cpn :number1="num1" :number2="num2"></cpn>
+  -->
+  <cpn :number1="num1" 
+       :number2="num2"
+       @num1change="fnum1change"
+       @num2change="fnum2change"/>
+</div>
+
+<!-- child component -->
+<template id="cpn">
+  <div>
+    <h2>props: {{number1}}</h2>
+    <h2>data: {{dnumber1}}</h2>
+    <!-- <input type="text" v-model="dnumber1"> -->
+    <!-- <input type="text" v-bind:value="dnumber1" @input="dnumber1=$event.target.value"> -->
+    <input type="text" v-bind:value="dnumber1" @input="num1Input"> 
+
+    <h2>props: {{number2}}</h2>
+    <h2>data: {{dnumber2}}</h2>
+    <!-- <input type="text" v-model="dnumber2"> -->
+    <!-- <input type="text" v-bind:value="dnumber2" @input="dnumber2=$event.target.value"> -->
+    <input type="text" v-bind:value="dnumber2" @input="num2Input">
+  </div>
+</template>
+<!--導入js-->
+<script src="https://cdn.jsdelivr.net/npm/vue@2.5.21/dist/vue.min.js"></script>
+<script>
+  // father component
+  const app = new Vue({
+    el: '#app', 
+    data: {
+      num1: 1,
+      num2: 0
+    },
+    methods: {
+      fnum1change(value) {
+        //console.log(typeof value);
+        this.num1 = parseFloat(value);
+      },
+      fnum2change(value) {
+        //console.log(typeof value);
+        console.log(parseFloat(value))
+        this.num2 = parseFloat(value);
+      }
+    },
+    // child component
+    components: {
+      cpn: {
+        template: '#cpn',
+        // show in child component
+        props: {
+          number1: Number,
+          number2: Number
+        },
+        // data alter by child component
+        // it would be better to let each component manage its own data
+        data() {
+          return {
+            dnumber1: this.number1,
+            dnumber2: this.number2
+          }
+        },
+        methods: {
+          num1Input(event){
+            // 1. pass the value from input(value:) to dnumber1
+            this.dnumber1=event.target.value;
+            // 2. to let father component can alter the value(child data()),
+            // emit an event 
+            this.$emit('num1change', this.dnumber1);
+            // 3. alter dnumber2 at the same time
+            this.dnumber2=this.dnumber1*100;
+            // 4. to let props(number2) change also, need to emit an event
+            this.$emit('num2change', this.dnumber2);
+          },
+          num2Input(event){
+            this.dnumber2=event.target.value;
+            this.$emit('num2change', this.dnumber2);
+            this.dnumber1=this.dnumber2/100;
+            this.$emit('num1change', this.dnumber1);
+          }
+        }
+      }
+    }
+  })
+    // npm install
+    // npm run serve
+</script>
+</html>

@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<div id="app">
+  <!-- 1. checkbok : choose one
+  -->
+  <select name="kkk" id="" v-model="fruit">
+    <option value="apple">apple</option>
+    <option value="banana">banana</option>
+    <option value="orange">orange</option>
+    <option value="strawberry">strawberry</option>
+  </select>
+  <br>
+  <h2>you choose : {{fruit}}</h2>
+
+  <br>
+  <!-- 2. checkbok : choose muti
+  -->
+  <select name="kkk" id="" v-model="fruits" multiple>
+    <option value="apple">apple</option>
+    <option value="banana">banana</option>
+    <option value="orange">orange</option>
+    <option value="strawberry">strawberry</option>
+  </select>
+  <br>
+  <h2>you choose : {{fruits}}</h2>
+
+</div>
+<!--導入js-->
+<script src="https://cdn.jsdelivr.net/npm/vue@2.5.21/dist/vue.min.js"></script>
+<script>
+  const app = new Vue({
+      el: '#app', 
+      data: {
+        message: 'hello',
+        fruit: 'apple', // slect : choose one
+        fruits: [] ,// slect : choose muti
+      }
+  })
+    
+</script>
+</html>
